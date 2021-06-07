@@ -10,14 +10,15 @@
 #include "protocol.h"
 #include "util.h"
 
+#include "moneta.h"
+
 #define MIN_RETRY 1000
 
 #define REQUIRE_VERSION 70001
 
 static inline int GetRequireHeight(const bool testnet = fTestNet)
 {
-    //return testnet ? 500000 : 350000;
-    return testnet ? 0 : 0;
+    return testnet ? MONETA_REQUIRE_HEIGHT_TEST : MONETA_REQUIRE_HEIGHT;
 }
 
 std::string static inline ToString(const CService &ip) {

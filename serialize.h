@@ -19,6 +19,8 @@
 #include <boost/tuple/tuple_comparison.hpp>
 #include <boost/tuple/tuple_io.hpp>
 
+#include "moneta.h"
+
 #if defined(_MSC_VER) || defined(__BORLANDC__)
 typedef __int64  int64;
 typedef unsigned __int64  uint64;
@@ -60,7 +62,7 @@ class CDataStream;
 class CAutoFile;
 static const unsigned int MAX_SIZE = 0x02000000;
 
-static const int PROTOCOL_VERSION = 70015;
+static const int PROTOCOL_VERSION = MONETA_PROTOCOL_VERSION;
 
 // Used to bypass the rule against non-const reference to temporary
 // where it makes sense with wrappers such as CFlatData or CTxDB

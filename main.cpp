@@ -12,6 +12,8 @@
 #include "bitcoin.h"
 #include "db.h"
 
+#include "moneta.h"
+
 using namespace std;
 
 bool fTestNet = false;
@@ -418,8 +420,13 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"host1", "host2", "host3", "host4", ""};
-static const string testnet_seeds[] = {"172.18.0.10", ""};
+static const string mainnet_seeds[] = {MONETA_MAINNET_SEED_0,
+                                      MONETA_MAINNET_SEED_1,
+                                      MONETA_MAINNET_SEED_2,
+                                      MONETA_MAINNET_SEED_3,
+                                      ""};
+static const string testnet_seeds[] = {MONETA_TESTNET_SEED_0,
+                                      ""};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
@@ -476,10 +483,10 @@ int main(int argc, char **argv) {
   bool fDNS = true;
   if (opts.fUseTestNet) {
       printf("Using testnet.\n");
-      pchMessageStart[0] = 0xfa;
-      pchMessageStart[1] = 0xbf;
-      pchMessageStart[2] = 0xb5;
-      pchMessageStart[3] = 0xda;
+      pchMessageStart[0] = MONETA_PCH_MESSAGE_START_TEST_0;
+      pchMessageStart[1] = MONETA_PCH_MESSAGE_START_TEST_1;
+      pchMessageStart[2] = MONETA_PCH_MESSAGE_START_TEST_2;
+      pchMessageStart[3] = MONETA_PCH_MESSAGE_START_TEST_3;
       seeds = testnet_seeds;
       fTestNet = true;
   }

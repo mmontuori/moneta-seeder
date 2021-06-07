@@ -9,7 +9,7 @@ COIN_NAME_LOWER=$(echo $COIN_NAME | tr '[:upper:]' '[:lower:]')
 COIN_NAME_UPPER=$(echo $COIN_NAME | tr '[:lower:]' '[:upper:]')
 COIN_UNIT_LOWER=$(echo $COIN_UNIT | tr '[:upper:]' '[:lower:]')
 DIRNAME=$(dirname $0)
-DOCKER_IMAGE_LABEL="mnta-env"
+DOCKER_IMAGE_LABEL="dnsseed-env"
 OSVERSION="$(uname -s)"
 SEEDNODE_DNS_SERVER="moneta-seed.misas.us"
 SEEDNODE_HOST="dnsseed.misas.us"
@@ -365,35 +365,9 @@ case $1 in
     ;;
     prepare)
         docker_build_image
-        generate_genesis_block
-	retrieve_hashes
-        newcoin_replace_vars
-        build_new_coin
-	build_seednode
-    ;;
-    prepare_seednode)
-        docker_build_image
 	build_seednode
     ;;	
     start)
-        if [ -n "$(docker ps -q -f ancestor=$DOCKER_IMAGE_LABEL)" ]; then
-            echo "There are nodes running. Please stop them first with: $0 stop"
-            exit 1
-        fi
-        docker_create_network
-
-        docker_run_node 2 "cd /$COIN_NAME_LOWER ; ./src/${COIN_NAME_LOWER}d $CHAIN -listen -noconnect -bind=$DOCKER_NETWORK.2 -addnode=$DOCKER_NETWORK.1 -addnode=$DOCKER_NETWORK.3 -addnode=$DOCKER_NETWORK.4 -addnode=$DOCKER_NETWORK.5" &
-        docker_run_node 3 "cd /$COIN_NAME_LOWER ; ./src/${COIN_NAME_LOWER}d $CHAIN -listen -noconnect -bind=$DOCKER_NETWORK.3 -addnode=$DOCKER_NETWORK.1 -addnode=$DOCKER_NETWORK.2 -addnode=$DOCKER_NETWORK.4 -addnode=$DOCKER_NETWORK.5" &
-        docker_run_node 4 "cd /$COIN_NAME_LOWER ; ./src/${COIN_NAME_LOWER}d $CHAIN -listen -noconnect -bind=$DOCKER_NETWORK.4 -addnode=$DOCKER_NETWORK.1 -addnode=$DOCKER_NETWORK.2 -addnode=$DOCKER_NETWORK.3 -addnode=$DOCKER_NETWORK.5" &
-        docker_run_node 5 "cd /$COIN_NAME_LOWER ; ./src/${COIN_NAME_LOWER}d $CHAIN -listen -noconnect -bind=$DOCKER_NETWORK.5 -addnode=$DOCKER_NETWORK.1 -addnode=$DOCKER_NETWORK.2 -addnode=$DOCKER_NETWORK.3 -addnode=$DOCKER_NETWORK.4" &
-
-        echo "Docker containers should be up and running now. You may run the following command to check the network status:
-#for i in \$(docker ps -q); do docker exec \$i /$COIN_NAME_LOWER/src/${COIN_NAME_LOWER}-cli $CHAIN getblockchaininfo; done"
-        echo "To ask the nodes to mine some blocks simply run:
-#for i in \$(docker ps -q); do docker exec \$i /$COIN_NAME_LOWER/src/${COIN_NAME_LOWER}-cli $CHAIN generate 2  & done"
-        exit 1
-    ;;
-    start_seednode)
         if [ -n "$(docker ps -q -f ancestor=$DOCKER_IMAGE_LABEL)" ]; then
             echo "There are nodes running. Please stop them first with: $0 stop"
             exit 1

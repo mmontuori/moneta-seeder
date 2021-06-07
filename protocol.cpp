@@ -10,6 +10,7 @@
 #include "util.h"
 #include "netbase.h"
 
+#include "momneta.h"
 
 #ifndef WIN32
 # include <arpa/inet.h>
@@ -22,7 +23,10 @@ static const char* ppszTypeName[] =
     "block",
 };
 
-unsigned char pchMessageStart[4] = { 0xf9, 0xbe, 0xb4, 0xd9 };
+unsigned char pchMessageStart[4] = { MONETA_PCH_MESSAGE_START_0,
+                                    MONETA_PCH_MESSAGE_START_1,
+                                    MONETA_PCH_MESSAGE_START_2,
+                                    MONETA_PCH_MESSAGE_START_3 };
 
 CMessageHeader::CMessageHeader()
 {
