@@ -10,7 +10,7 @@
 #include "util.h"
 #include "netbase.h"
 
-#include "momneta.h"
+#include "moneta.h"
 
 #ifndef WIN32
 # include <arpa/inet.h>
