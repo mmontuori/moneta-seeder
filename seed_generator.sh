@@ -2,7 +2,8 @@
 
 COIN_NAME="Moneta"
 COIN_UNIT="MNTA"
-CHAIN="-regtest"
+CHAIN="--testnet"
+#CHAIN=""
 
 SEEDNODE_REPOS=https://github.com/mmontuori/moneta-seeder.git
 COIN_NAME_LOWER=$(echo $COIN_NAME | tr '[:upper:]' '[:lower:]')
@@ -372,7 +373,7 @@ case $1 in
             echo "There are nodes running. Please stop them first with: $0 stop"
             exit 1
         fi
-        docker_run_seednode 6 "/moneta-seeder/dnsseed -h $SEEDNODE_HOST -n $SEEDNODE_DNS_SERVER -m $SEEDNODE_EMAIL >/var/log/dnsseed.log 2>&1" &
+        docker_run_seednode 6 "/moneta-seeder/dnsseed $CHAIN -h $SEEDNODE_HOST -n $SEEDNODE_DNS_SERVER -m $SEEDNODE_EMAIL >/var/log/dnsseed.log 2>&1" &
     ;;
     *)
         cat <<EOF
