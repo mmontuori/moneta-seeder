@@ -1,3 +1,8 @@
 *.o
 dnsseed*
 dnsstats.log
+
+miner*
+mnta-env
+moneta-seeder
+
