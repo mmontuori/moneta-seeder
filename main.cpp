@@ -421,18 +421,15 @@ extern "C" void* ThreadStats(void*) {
 }
 
 static const string mainnet_seeds[] = {MONETA_MAINNET_SEED_0,
-                                      MONETA_MAINNET_SEED_1,
-                                      MONETA_MAINNET_SEED_2,
-                                      MONETA_MAINNET_SEED_3,
                                       ""};
 static const string testnet_seeds[] = {MONETA_TESTNET_SEED_0,
                                       ""};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
-  if (!fTestNet){
+  /*if (!fTestNet){
     db.Add(CService("kjy2eqzk4zwi5zd3.onion", 8333), true);
-  }
+  }*/
   do {
     for (int i=0; seeds[i] != ""; i++) {
       vector<CNetAddr> ips;

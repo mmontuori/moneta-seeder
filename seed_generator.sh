@@ -2,8 +2,8 @@
 
 COIN_NAME="Moneta"
 COIN_UNIT="MNTA"
-CHAIN="--testnet"
-#CHAIN=""
+#CHAIN="--testnet"
+CHAIN=""
 
 SEEDNODE_REPOS=https://github.com/mmontuori/moneta-seeder.git
 COIN_NAME_LOWER=$(echo $COIN_NAME | tr '[:upper:]' '[:lower:]')
@@ -14,7 +14,7 @@ DOCKER_IMAGE_LABEL="dnsseed-env"
 OSVERSION="$(uname -s)"
 SEEDNODE_DNS_SERVER="moneta-seed.misas.us"
 SEEDNODE_HOST="dnsseed.misas.us"
-SEEDNODE_EMAIL="michael.montuori@gmail.com"
+SEEDNODE_EMAIL="monetaseed@misas.us"
 
 docker_build_image()
 {

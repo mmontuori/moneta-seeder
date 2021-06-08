@@ -11,11 +11,8 @@
 #define MONETA_PCH_MESSAGE_START_2 0xb6
 #define MONETA_PCH_MESSAGE_START_3 0xdb
 
-#define MONETA_MAINNET_SEED_0 "host0"
-#define MONETA_MAINNET_SEED_1 "host1"
-#define MONETA_MAINNET_SEED_2 "host2"
-#define MONETA_MAINNET_SEED_3 "host3"
+#define MONETA_MAINNET_SEED_0 "moneta-seed.misas.us"
 
-#define MONETA_TESTNET_SEED_0 "172.18.0.10"
+#define MONETA_TESTNET_SEED_0 "moneta-seed.misas.us"
 
-#define MONETA_PROTOCOL_VERSION 70015
+#define MONETA_PROTOCOL_VERSION 70099
