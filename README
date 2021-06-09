@@ -1,7 +1,7 @@
-bitcoin-seeder
+moneta-seeder
 ==============
 
-Bitcoin-seeder is a crawler for the Bitcoin network, which exposes a list
+Moneta-seeder is a crawler for the Moneta network, which exposes a list
 of reliable nodes via a built-in DNS server.
 
 Features:
@@ -14,7 +14,27 @@ Features:
 * very low memory (a few tens of megabytes) and cpu requirements.
 * crawlers run in parallel (by default 24 threads simultaneously).
 
-REQUIREMENTS
+
+RUNNING IN DOCKER (preferred method)
+------------
+
+- make sure you have the most recent version of the repository
+- make sure you have docker installed
+
+To prepare the running image:
+
+$ ./seed_generator.sh prepare
+
+Refer to the USAGE section before starting the container.
+
+To run the image:
+
+$ ./seed_generator.sh run
+
+At this point, you can interact with the image with docker
+
+
+RUNNING ON BEAR METAL OR VM (Debian and derivates)
 ------------
 
 $ sudo apt-get install build-essential libboost-all-dev libssl-dev
