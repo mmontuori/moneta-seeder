@@ -24,7 +24,7 @@ docker_build_image()
         if [ ! -f $DOCKER_IMAGE_LABEL/Dockerfile ]; then
             mkdir -p $DOCKER_IMAGE_LABEL
             cat <<EOF > $DOCKER_IMAGE_LABEL/Dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 ## for apt to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
