@@ -1,5 +1,6 @@
 *.o
-dnsseed*
+dnsseed-env
+dnsseed.env
 dnsstats.log
 
 miner*

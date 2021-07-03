@@ -1,20 +1,33 @@
 #!/bin/bash -e
+#
+# miner.sh: bootstraps Moneta mining via docker
+#
+# Use the help command line option to show all the options
+#
+# Copyright (c) 2021 Michael Montuori
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
-COIN_NAME="Moneta"
-COIN_UNIT="MNTA"
-#CHAIN="--testnet"
-CHAIN=""
-
-SEEDNODE_REPOS=https://github.com/mmontuori/moneta-seeder.git
-COIN_NAME_LOWER=$(echo $COIN_NAME | tr '[:upper:]' '[:lower:]')
-COIN_NAME_UPPER=$(echo $COIN_NAME | tr '[:lower:]' '[:upper:]')
-COIN_UNIT_LOWER=$(echo $COIN_UNIT | tr '[:upper:]' '[:lower:]')
-DIRNAME=$(dirname $0)
-DOCKER_IMAGE_LABEL="dnsseed-env"
-OSVERSION="$(uname -s)"
-SEEDNODE_DNS_SERVER="moneta-seed.misas.us"
-SEEDNODE_HOST="dnsseed.misas.us"
-SEEDNODE_EMAIL="monetaseed@misas.us"
+if ! source dnsseed.env 2>/dev/null;
+    echo "ERROR: dnsseed.env file not found!"
+    exit 1
+fi
 
 docker_build_image()
 {
