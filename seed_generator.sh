@@ -24,7 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if ! source dnsseed.env 2>/dev/null;
+if ! source dnsseed.env 2>/dev/null; then
     echo "ERROR: dnsseed.env file not found!"
     exit 1
 fi
